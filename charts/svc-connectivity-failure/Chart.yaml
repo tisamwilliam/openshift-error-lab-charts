@@ -1,0 +1,6 @@
+apiVersion: v2
+name: demo-service
+description: A Helm chart to deploy demo application with service and route on OpenShift
+type: application
+version: 0.1.0
+appVersion: "1.0.0"

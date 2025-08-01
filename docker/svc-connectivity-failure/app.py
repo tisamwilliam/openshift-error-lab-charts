@@ -5,8 +5,7 @@ app = Flask(__name__)
 
 @app.route("/actuator/health")
 def health():
-    # 模擬隨機延遲：30% 機率超過 5 秒
-    if random.random() < 0.3:
+    if random.random() < 0.5:
         time.sleep(5)
     return {"status": "UP"}
 

@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: order-service
-  namespace: production
+  name: demo-service
+  namespace: up0123-test
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: order-service
+      app: demo-service
   template:
     metadata:
       labels:
-        app: order-service
+        app: demo-service
     spec:
       containers:
-        - name: order-service
-          image: ghcr.io/tisamwilliam/svc-connectivity-failure:1.0.0
+        - name: demo-service
+          image: ghcr.io/tisamwilliam/svc-connectivity-failure:latest
           ports:
             - containerPort: 8080
           resources:
