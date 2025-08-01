@@ -3,7 +3,7 @@ name: Build SVC Connectivity Failure Image
 on:
   push:
     branches:
-      - main
+      - dev
     paths:
       - 'docker/svc-connectivity-failure/**'
       - '.github/workflows/pipeline.yml'
