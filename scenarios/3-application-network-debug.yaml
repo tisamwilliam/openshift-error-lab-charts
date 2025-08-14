@@ -1,0 +1,21 @@
+features:
+  namespace:
+    enabled: 'true'
+  deployment:
+    enabled: 'true'
+  service:
+    enabled: 'true'
+  route:
+    enabled: 'true'
+
+global:
+  scenario: application-network-debug
+
+namespaceLabels:
+  ingress: 'default'
+
+app:
+  image:
+    repository: '10.250.75.140/william-lab/rockylinux'
+    tag: '9'
+

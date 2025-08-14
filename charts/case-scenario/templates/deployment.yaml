@@ -18,10 +18,14 @@ spec:
         app.kubernetes.io/name: {{ .Chart.Name }}
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
-      serviceAccountName: {{- if .Values.features.rbac.enabled -}}{{ printf "%s-%s" (default "training" .Values.global.baseName) .Values.global.scenario | trunc 63 | trimSuffix "-" }}{{- else -}} default {{- end }}
+      serviceAccountName: {{ if .Values.features.rbac.enabled -}}{{ printf "%s-%s" (default "training" .Values.global.baseName) .Values.global.scenario | trunc 63 | trimSuffix "-" }}{{- else -}} default {{- end }}
       containers:
         - name: app
           image: {{ .Values.app.image.repository }}:{{ .Values.app.image.tag | default "latest" }}
+          command:
+            - 'sleep'
+          args:
+            - '9999'
           ports:
             - containerPort: {{ .Values.app.targetPort | default 8080 }}
           volumeMounts:

@@ -1,8 +1,8 @@
 features:
   namespace:
-    enabled: true
+    enabled: 'true'
   route:
-    enabled: true
+    enabled: 'true'
 
 global:
   scenario: namespace-ingress-label
