@@ -7,5 +7,5 @@ features:
 global:
   scenario: namespace-ingress-label
 
-# namespaceLabels:
-#   ingress: 'true'
+namespaceLabels:
+  ingress: 'default'
