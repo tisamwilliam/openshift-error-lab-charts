@@ -1,0 +1,11 @@
+features:
+  namespace:
+    enabled: true
+  route:
+    enabled: true
+
+global:
+  scenario: namespace-ingress-label
+
+# namespaceLabels:
+#   ingress: 'true'
