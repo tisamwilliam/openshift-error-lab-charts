@@ -1,0 +1,50 @@
+# ==== 全域 ====
+global:
+  baseName: "training"
+  scenario: "0"
+
+# ==== 功能開關 ====
+features:
+  deployment:
+    enabled: false
+  namespace:
+    enabled: false
+  networkPolicy:
+    enabled: false
+  pv:
+    enabled: false
+  pvc:
+    enabled: false
+  rbac:
+    enabled: false
+  route:
+    enabled: false
+  serviceMonitor:
+    enabled: false
+  service:
+    enabled: false
+
+# ==== Namespace ====
+namespace:
+  name: "up0134-training"
+namespaceLabels: {}
+
+# ==== 應用設定 ====
+app:
+  image:
+    repository: "docker.io/library/nginx"
+    tag: "stable"
+  port: 8080
+  targetPort: 8080
+  serviceType: "ClusterIP"
+  host: "app.ocp.olg.online.com"
+  tls:
+    termination: ""
+    insecureEdgeTerminationPolicy: "Redirect"
+
+# ==== 儲存設定 ====
+storage:
+  size: "10Gi"
+  reclaimPolicy: "Delete"
+  storageClassName: ""
+  hostPath: ""

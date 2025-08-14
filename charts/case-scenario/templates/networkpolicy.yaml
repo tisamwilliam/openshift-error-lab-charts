@@ -1,0 +1,26 @@
+{{- if .Values.features.networkPolicy.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: {{ printf "%s-%s-allow-from-labeled-ns" (default "training" .Values.global.baseName) .Values.global.scenario | trunc 63 | trimSuffix "-" }}
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: {{ .Chart.Name }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  policyTypes: ["Ingress","Egress"]
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              ingress: "default"
+      ports:
+        - port: {{ .Values.app.port | default 8080 }}
+  egress:
+    - to:
+        - namespaceSelector: {}
+      ports:
+        - port: 53
+          protocol: UDP
+    - {}
+{{- end }}

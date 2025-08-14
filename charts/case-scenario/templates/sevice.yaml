@@ -1,0 +1,18 @@
+{{- if .Values.features.service.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ printf "%s-%s-svc" (default "training" .Values.global.baseName) .Values.global.scenario | trunc 63 | trimSuffix "-" }}
+  labels:
+    app.kubernetes.io/name: {{ .Chart.Name }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+spec:
+  type: {{ .Values.app.serviceType | default "ClusterIP" }}
+  selector:
+    app.kubernetes.io/name: {{ .Chart.Name }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+  ports:
+    - name: http
+      port: {{ .Values.app.port | default 8080 }}
+      targetPort: {{ .Values.app.targetPort | default 8080 }}
+{{- end }}
